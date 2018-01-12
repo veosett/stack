@@ -1,31 +1,17 @@
 #include <stdio.h>
+#include "string.h"
 #include "stack.h"
 
 int main() {
 
+    const char* arr[] = {"first", "second", "third"};
     Stack s;
-    int some = 21;
-    NewStack(&s, sizeof(int), 4);
-    PushStack(&s, &some);
-    some = 2;
-    PushStack(&s, &some);
-    some = 14;
-    PushStack(&s, &some);
-    some = 6;
-    PushStack(&s,&some);
-    PushStack(&s,&some);
-    PushStack(&s,&some);
-    PushStack(&s,&some);
-    PushStack(&s,&some);
-    PushStack(&s,&some);
-    PushStack(&s,&some);
-    PushStack(&s,&some);
-    PushStack(&s,&some);
-    PushStack(&s,&some);
-    PopStack(&s);
-    PopStack(&s);
-    PopStack(&s);
-    PopStack(&s);
+    NewStack(&s, sizeof(int), 4, DeleteString);
+
+    for (int i = 0; i < 3; i++) {
+        void * str = strdup(arr[i]);
+        PushStack(&s, str);
+    }
 
     DeleteStack(&s);
 
